@@ -2,6 +2,7 @@ package android.vm.findart;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.*;
@@ -12,13 +13,25 @@ import android.widget.*;
 
 public class MainActivity extends Activity{
 
+    public static final String USERNAME_KEY = "username";
+
     TextView welcomeTv;
     Button changeTextBtn;
     EditText changeTextEdit;
+    Activity activity = this;
+    String username;
+
     View.OnClickListener changeTxtBtnListener = new View.OnClickListener(){
         public void onClick(View view){
+        username = changeTextEdit.getText().toString();
+
+
             //welcomeTv.setText("ciao");
-            welcomeTv.setText(changeTextEdit.getText());
+           // welcomeTv.setText(changeTextEdit.getText());
+            Intent intent = new Intent(activity, Second_Activity.class);
+            intent.putExtra(USERNAME_KEY, username);
+            intent.putExtra("age", 18);
+            startActivity(intent);
         }
     };
 
